@@ -1,0 +1,179 @@
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.formulario_2{
+    color: #000000;
+    height: 100%;
+    width: 60%;
+    background-size: cover;
+    border-radius: 5%;
+   
+}
+
+.formulario_1{
+    color: #000000;
+    height: 80%;
+    width: 50%;
+    background-size: cover;
+    border-radius: 5%;
+    
+}
+.formulario_2 form, .formulario_1 form{
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-family:system-ui, 'Open Sans', 'Helvetica Neue', sans-serif;
+      
+}
+.contenedor{
+    height: 100%;
+    width:100%;
+    padding: 10px;
+
+}
+.contenedor_interno{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    width: 100%;
+    height: 80%;
+}
+
+.contenido{
+    display:flex;
+    width: 80%;
+}
+.title_form1, .title_form{
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    padding:5px;
+    font-size: 200%;
+    font-family:system-ui, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.hidden {
+    display: none;
+}
+.my_input .sombra{
+    border-bottom: 1px solid #adadad;
+}
+form input{
+    background: none;
+    border: none;
+    outline: 0px;
+    color: #000000;
+}
+form select:hover{
+    color: black;
+}
+.formulario p{
+    font-size: 25px;
+}
+.contenido{
+    display: flex;
+    margin-bottom: 15%;
+    margin:30px 0 15px 0;
+
+}
+.contenido select{
+    width: 100%;
+    display:flex;
+    align-items: center;
+}
+.my_input{
+    width: 98%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+.boton_form{
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.boton_form button{
+    background: #353535; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cursor de mano */
+    transition: background 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
+}
+
+.boton_form button:hover{
+    scale: 1.1;
+    background:rgb(9, 9, 57);
+}
+
+@media screen and (max-width: 700px) {
+
+    section{
+        height: 100%;
+
+    }
+    .formulario_2, .formulario_1{
+        height: 100%;
+        width: 90%;
+        background:none;
+        }
+    form{
+        height: 100%;
+        width:100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 5%;  
+        background: none;                                                   
+    }
+    .contenedor{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .contenedor_h{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .contenedor_herramienta{
+        margin:10%;
+    }
+    .contenedor_interno{
+        height: 90%;
+        display: flex;
+        justify-content:space-around;
+    }
+    .selectDiv{
+        visibility:visible;
+    }
+    .contenido-top{
+        margin: 10px;
+    }
+
+
+    .boton_form{
+        margin:10px;
+        width: 100%;
+        justify-content: center;
+    }
+ }
+ @media screen and (min-widht: 650px){
+
+    .contenido select{
+        width: 90%;
+    }
+ }

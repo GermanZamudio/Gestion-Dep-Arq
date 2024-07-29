@@ -1,0 +1,115 @@
+{% extends '../base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Editar
+{% endblock %}
+
+
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'editar/style.css' %}" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    
+    {% if error %}
+        <h1>No es valido el formulario</h1>
+    {% endif %}
+        <section>
+            
+            <div class="formulario">
+                <form action="{% url 'Agregar_Num_Orden' Acta.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="title_form">
+                        <div class="my_input">
+                            <div class="sombra">
+                                <p>{{ form.articulo_licitacion }}</p>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="contenedor">
+                        <div class="contenedor_1">
+                            
+                            <div class="contenido">
+                                <label for="">Licitacion:</label>
+                                <div class="my_input"> 
+                                    <div class="sombra">
+                                        {{ form.Licitacion }}
+                                    </div>                                      
+                                </div>
+                            </div>
+                            <div class="contenido">
+                                <label for="">Destino:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.Destino }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Número de Orden:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.Numero_de_Orden }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                {{ form.Ubicacion.label_tag }}
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.Ubicacion }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Acción:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.accion }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Marca:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.marca }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Cantidad:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.Cantidad }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Entrega conforme:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.Entrega_conforme }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Recibe conforme:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.Recibe_conforme }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div  class="boton_form">
+                                <button>Guardar</button>
+                            </div> 
+
+
+{% endblock %}

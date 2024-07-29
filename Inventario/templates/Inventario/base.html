@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+        <!-- Otros elementos comunes del encabezado -->
+        {% block extra_head %}{% endblock %}
+        <link rel="stylesheet" type="text/css" href="{% static 'base/style.css' %}" >
+        <!-- Agrega aquí tus enlaces a archivos CSS adicionales si es necesario -->
+    </head>
+<body>
+    <header class="hero">
+        <nav class="nav container" id="nav">
+            <p class="nav__logo desktop">Deposito-Arquitectura</p>
+            <p class="nav__logo mobile" >Dp-Arq</p>
+            <ul class="nav__links">
+                <li class="nav__item">
+                    <a href="/home" class="nav__link">Home</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/Inventario" class="nav__link">Inventario</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/Novedad" class="nav__link">Novedades</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/Inventario/Movimientos" class="nav__link">Registro</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/Herramientas" class="nav__link">Herramientas</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/signout" class="nav__link">Cerrar sesión</a>
+                </li>
+            </ul>
+            <a href="#nav" class="nav__hamburguer" onclick="none_select()">
+                <img src="../../../static/Inventario/img/menu2.png" alt="" class="nav__icon">
+            </a>
+            <a href="#" class="nav__close" onclick="none_select()">
+                <img src="../../../static/Inventario/img/close.png" alt="" class="nav__icon">
+            </a>
+        </nav>
+    </header>
+
+    {% block content %}
+    <!-- Contenido de tu página -->
+    {% endblock %}
+
+</body>
+</html>

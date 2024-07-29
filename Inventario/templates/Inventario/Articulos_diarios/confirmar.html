@@ -1,0 +1,47 @@
+{% extends 'Inventario/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Confirmar Eliminacion
+{% endblock %}
+
+
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'eliminar/style.css' %}" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+{% if Diario %}
+    <div class="formulario">
+        <h1 class="titulo-desktop">Eliminar</h1>
+        <div class="contenedor">    
+            <div class="username">                 
+                <p>¿Está seguro que desea eliminar el registro?</p><br>                     
+                <p>Luego de borrar el registro, no podrá recuperarlo</p>
+            </div>
+            <div class="buttom">
+                <a href="{% url 'Eliminar_Articulo' id %}" class="btn btn-primary">Eliminar</a>
+                <a class="btn btn-primary" href="/Inventario/" >Cancelar</a>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="formulario">
+        <h1 class="titulo-desktop">Eliminar</h1>
+        <div class="contenedor">    
+            <div class="username">     
+                <p>¿Está seguro que desea eliminar el registro?</p><br>                     
+                <p>Luego de borrar el registro, no podrá recuperarlo</p>
+            </div>
+            <div class="buttom">
+                <a href="{% url 'Eliminar_Articulo_Licitacion' id %}" class="btn btn-primary">Eliminar</a>
+                <a class="btn btn-primary" href="/Inventario/" >Cancelar</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

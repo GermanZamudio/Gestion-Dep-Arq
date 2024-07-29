@@ -1,0 +1,71 @@
+
+/*Section*/
+
+
+
+.formulario{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 400px;
+    background:white;
+    border-radius: 10px;
+}
+
+.titulo-desktop{
+    text-align: center;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid silver;
+    color: #093683;
+}
+.contenedor{
+    padding: 0 40px;
+    box-sizing: border-box;
+    
+}
+.contenedor .username{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    border-bottom: 2px solid #adadad;
+    border-top: 2px solid #adadad;
+    margin:30px 0;
+}
+.username p{
+    text-align: center;
+}
+
+.buttom{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttom a{
+    text-align: center;
+    border: 1px solid;
+    padding: 4px;
+    background:#093683;
+    border-radius: 25px;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.5s ease; 
+    margin: 5px;
+    text-decoration: none;
+}
+.formulario a:hover{
+    transform: scale(1.05);
+}
+
+
+@media (max-width:600px)
+     {  
+        .formulario{
+            width: 300px;
+        }
+     }

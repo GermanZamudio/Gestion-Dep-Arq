@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+   
+    <title>Home</title>
+</head>
+
+<body>
+    <div class="div_nav">
+        <div>
+            <form action="/signout/" class="cerrar_sesion">
+                <button >Cerrar sesion</button>
+            </form>
+        </div>
+        <nav class="Logo">
+            <p class="titulo-desktop">Deposito-Arquitectura</p>
+            <p class="titulo-mobile">Dp-Arq</p>
+        </nav>
+    </div>
+    <div>
+        <p class="usuario">Usuario actual: {{usuario}}</p>
+    </div>
+    
+    <section>
+        <div class="caja_1">
+            <div class="Inventario" >
+                <div class="label_inventario">
+                    <label>Inventario</label>
+                </div>
+                    
+                <div class="CRUD">
+                    <ul>
+                        <li><a href="/Inventario">Articulos</a></li>
+                        <br>
+                        <li><a href="/Inventario/Ingreso/">Ingreso de Articulos </a></li>
+                        <br>
+                        <li><a href="/Inventario/Ingreso_licitacion/">Ingreso de Articulos/Licitacion</a></li>
+                    </ul>           
+                </div>  
+            </div>
+
+            <div class="caja_2">
+                <div class="C1">
+                    <a href="/Novedad/">Novedades</a>
+                </div>
+            </div>
+            <div class="caja_3">
+                    <a href="/Inventario/Movimientos/">Registro</a>
+                
+            </div>
+            <div class="caja_4">
+                    <a href="/Herramientas/">Herramientas</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

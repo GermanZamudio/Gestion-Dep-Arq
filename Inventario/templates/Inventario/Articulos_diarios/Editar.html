@@ -1,0 +1,278 @@
+{% extends '../base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Editar
+{% endblock %}
+
+
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'editar/style.css' %}" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    {% if Diario %}
+        {% if error %}
+            <h1>No es valido el formulario de Articulo</h1>
+        {% endif %}
+        <section>
+            
+            <div class="formulario">
+                <form action="{% url 'Editar_form' Articulo.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="title_form">
+                        <div class="my_input">
+                            <div class="sombra">
+                                <p>{{ form.nombre }}</p>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="contenedor">
+                        <div class="contenedor_1">
+                            <div class="contenido">
+                                {{ form_mov.accion.label_tag }}
+                                <div class="my_input"> 
+                                    <div class="sombra">
+                                        {{ form_mov.accion }}
+                                    </div>                                      
+                                </div>
+                            </div>
+                            <div class="contenido">
+                                {{ form_mov.Destino.label_tag }}
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form_mov.Destino }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div style="display: none;">
+                                {{ form_mov.Nombre_de_Articulo.label_tag }}{{ form_mov.Nombre_de_Articulo }}<br>
+                                {{ form_mov.Codigo.label_tag }}{{ form_mov.Codigo }}<br>
+                                {{form_mov.Ubicacion.label_tag}}{{form_mov.Ubicacion}}
+                                {{ form.saldo_unitario.label_tag }}{{ form.saldo_unitario }}<br>
+                                {{ form.saldo_total.label_tag }}{{ form.saldo_total }}<br>
+                                {{ form.utilidad.labeg_tag }}{{ form.utilidad }}
+                                {{ form.Existencias }}
+                            </div>
+                            <div class="contenido">
+                                {{ form.codigo.label_tag }}
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.codigo }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                {{ form.marca.label_tag }}
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.marca }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Propósito:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.Descripcion }}
+                                    </div>
+                                </div>    
+                            </div>
+                            
+
+                        </div>
+                        <div class="contenedor_2">
+
+                            <div class="contenido">
+                                <label for="">Categoría:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.IdCategorias }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Ubicación:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.IdUbicacion }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Cantidad modificada:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form_mov.Cantidad }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Entrega conforme:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form_mov.Entrega_conforme }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Recibe conforme:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form_mov.Recibe_conforme }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div  class="boton_form">
+                                <button>Guardar</button>
+                            </div>    
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+    {% elif Licitacion %}
+        {% if error %}
+        <h1>No es valido el formulario</h1>
+        {% endif %}
+        <section>
+                
+            <div class="formulario">
+                <form action="{% url 'Editar_form_Licitacion' Articulo.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="title_form">
+                        <div class="my_input">
+                            <div class="sombra">
+                                <p>{{ form.nombre }}</p>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="contenedor">
+                        <div class="contenedor_1">
+                            <div class="contenido">
+                                {{ form_mov.accion.label_tag }}
+                                <div class="my_input"> 
+                                    <div class="sombra">
+                                        {{ form_mov.accion }}
+                                    </div>                                      
+                                </div>
+                            </div>
+                            <div class="contenido">
+                                {{ form_mov.Destino.label_tag }}
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form_mov.Destino }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                {{ form_mov.Numero_de_Orden.label_tag }}
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form_mov.Numero_de_Orden }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div style="display: none;">
+                                {{ form_mov.articulo_licitacion.label_tag }}{{ form_mov.articulo_licitacion }}<br>
+                                {{ form_mov.Licitacion.label_tag }}{{ form_mov.Licitacion }}<br>
+                                {{ form_mov.Ubicacion.label_tag }}{{ form_mov.Ubicacion }}<br>
+                                {{ form.saldo_unitario.label_tag }}{{ form.saldo_unitario }}<br>
+                                {{ form.saldo_total.label_tag }}{{ form.saldo_total }}<br>
+                            </div>
+                            <div class="contenido">
+                                {{ form.codigo.label_tag }}
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.codigo }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                {{ form.marca.label_tag }}
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.marca }}
+                                    </div>
+                                </div>    
+                            </div>
+                            
+                            <div class="contenido">
+                                <label for="">Existencias:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.Existencias }}
+                                    </div>
+                                </div>    
+                            </div>
+
+                        </div>
+                        <div class="contenedor_2">
+
+                            <div class="contenido">
+                                <label for="">Categoría:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.IdCategorias }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Ubicación:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.IdUbicacion }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Licitacion:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.licitacion }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Cantidad modificada:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form_mov.Cantidad }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Entrega conforme:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form_mov.Entrega_conforme }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Recibe conforme:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form_mov.Recibe_conforme }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div  class="boton_form">
+                                <button>Guardar</button>
+                            </div>    
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    {% else %}
+    <h1 style="color: #fff;">Algo anda mal</h1>
+    {% endif %}
+
+{% endblock %}

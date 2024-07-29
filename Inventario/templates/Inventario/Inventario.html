@@ -1,0 +1,149 @@
+{% extends '../Inventario/base.html' %}
+{% load static %}
+{% block title %}
+    Inventario
+{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Inventario/style.css' %}" >
+   <!-- <script src="../../../static/Inventario/script.js"></script>
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <div class="filter">
+        <form class="form_filter" action="/Inventario/" method="get">
+            <input type="text" name="Buscar">
+            <input type="submit" value="Buscar">
+        </form>
+    </div> 
+    <section class="section" id="section">
+
+        <div class="Ingreso">
+            <div>
+                <a href="/Inventario/Ingreso/">+ Ingreso de Articulos </a>
+            </div>
+        </div>
+        <div class="title">
+            <p class="title_articulo">Articulos uso Diario</p>
+            
+            <a href="#section" class="section_abajo" id="open">
+                <img src="../../../static/Inventario/img/flecha_abajo.png" alt="icono" id="icono">
+            </a>     
+        </div>
+
+        <table class="tabla_open tabla_close" id="tabla_1">
+            <tr>
+                <th>Nomenclatura</th>
+                <th>Marca</th>
+                <th>Proposito</th>
+                <th>Cantidad</th>
+                <th>Ubicación</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            {% for Articulo in Articulos %}
+            <tr>
+                <td data-titulo="Nombre:">{{Articulo.nombre}}</td>
+                <td data-titulo="Marca:">{{Articulo.marca}}</td>
+                <td data-titulo="Descripción:">{{Articulo.Descripcion}}</td>
+                <td data-titulo="Cantidad:">{{Articulo.Existencias}}</td>
+                <td data-titulo="Ubicación:">{{Articulo.IdUbicacion}}</td>
+                <td><a href="{% url 'Editar_Articulo' Articulo.id %}">Editar</a></td>
+                <td><a href="{% url 'confirmar_articulo' Articulo.id %}">Eliminar</a></td> 
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No existen Articulos</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    <div class="Ingreso">
+        <div>
+            <a href="/Inventario/Ingreso_licitacion/"> + Ingreso de Licitacion</a>
+        </div>
+    </div>
+        <div class="title">
+            <p class="title_licitacion">Articulos de Licitación</p>
+            <a href="#section" class="section_abajo2" id="open_2">
+                <img src="../../../static/Inventario/img/flecha_abajo.png" alt="icono_2" id="icono_2">
+            </a>   
+        </div>
+        <table class="tabla_open_2 tabla_close_2 " id="tabla_2">
+            <tr>
+                <th>Nomenclatura</th>
+                <th>Marca</th>
+                <th>Cantidad</th>
+                <th>Ubicación</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            {% for ArticuloLicitacion in Articulos_Licitacion %}
+            <tr class="content">
+                <td data-titulo="Nombre:">{{ArticuloLicitacion.nombre}}</td>
+                <td data-titulo="Marca:">{{ArticuloLicitacion.marca}}</td>
+                <td data-titulo="Cantidad:">{{ArticuloLicitacion.Existencias}}</td>
+                <td data-titulo="Ubicacion:">{{ArticuloLicitacion.IdUbicacion}}</td>
+                <td><a href="{% url 'Editar_Articulo_Licitacion' ArticuloLicitacion.id %}">Editar</a></td>
+                <td><a href="{% url 'confirmar_licitacion' ArticuloLicitacion.id %}">Eliminar</a></td> 
+            </tr>
+            {% empty %}
+            <tr>
+                <td rowspan="5">No existen Articulos de licitación</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            let icono = document.getElementById("open");
+            let tabla = document.getElementById("tabla_1");
+            let imagen = document.getElementById("icono");
+
+            let tabla_2 = document.getElementById("tabla_2");
+            let icono_2= document.getElementById("open_2");
+            let imagen_2 = document.getElementById("icono_2");
+            let mayor_o_menor =  "{{ mayor_o_menor }}";
+            let rotated = false;
+
+            imagen.addEventListener("click", function() {
+            if (rotated) {
+                imagen.style.transform = "rotate(0deg)";
+                rotated = false;} 
+            else {
+                imagen.style.transform = "rotate(180deg)";
+                rotated = true;}});
+
+            imagen_2.addEventListener("click", function() {
+            if (rotated) {
+                imagen_2.style.transform = "rotate(0deg)";
+                rotated = false;}
+            else {
+                imagen_2.style.transform = "rotate(180deg)";
+                rotated = true;}});
+
+            icono.addEventListener('click', toogleTable);
+
+                function toogleTable() {
+                    tabla.classList.toggle('tabla_close');
+                }
+        
+            icono_2.addEventListener('click', toogleTable2);
+
+                function toogleTable2() {
+                    tabla_2.classList.toggle('tabla_close_2');
+                }
+            if (mayor_o_menor > 6){
+                toogleTable();
+                toogleTable2();}
+            });
+    </script>
+
+{% endblock %}

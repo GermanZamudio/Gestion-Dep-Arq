@@ -1,0 +1,109 @@
+{% extends 'Inventario/base.html' %}
+{% load static %}
+{% block title %}
+    Novedades
+{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Novedades/style.css' %}" >
+   <!-- <script src="../../../static/Inventario/script.js"></script>
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <div class="contenedor">
+        <form  class="form" method="POST" action="{% url 'Novedad' %}">
+            {% csrf_token %}
+            <div class="No_mostrar">
+                {{form.usuario}}
+            </div>
+            <div class="form-Comentario"  placeholder="Escribe tu mensaje aquí...">
+                {{form.Texto}}
+            </div>
+            <div class="button">
+                <button type="submit">Enviar Novedad</button>
+            </div>
+        </form>
+    </div>
+    <section>
+        <div class="filter">
+            <form class="form_filter" action="/Novedad/" method="get">
+                <input type="text" name="Buscar">
+                <input type="submit" value="Buscar">
+            </form>
+        </div> 
+        <div class="title">
+        <p class="title_articulo">Novedades</p>
+        <a href="#section" class="section_abajo" id="open">
+            <img src="../../../static/Inventario/img/flecha_abajo.png" alt="icono" id="icono">
+        </a>     
+        </div>
+        <div class="contenedor2">
+            <div class="Novedades_close Novedades_open" id="Novedades">
+                
+                {% if error %}
+                    <ul>
+                        <li>No es valido el formulario</li>
+                    </ul>
+                {% endif %}
+            
+                <div class="texto" id="Texto">
+                    {% for Novedad in Novedades %}
+                        <ul>       
+                            <li>{{Novedad.fecha|date:"d/m/y"}} - Usuario: {{Novedad.usuario}}</li>
+                        </ul>
+                        <div class="text_novedad">
+                            <p>Novedad: {{Novedad.Texto}}</p>   
+                            <div class="boton">                         
+                                <a href="{% url 'Eliminar_Novedad' Novedad.id %}">Eliminar</a>
+                            </div>    
+                        </div>    
+                    {% empty %}
+                        <ul>     
+                            <li>No existen Novedades en el sistema</li>
+                        </ul>
+                {% endfor %}
+                    </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            let icono = document.getElementById("open");
+            let Novedades = document.getElementById("Novedades");
+            let imagen = document.getElementById("icono");
+
+            let mayor_o_menor =  "{{ mayor_o_menor }}";
+
+            let rotated = false;
+
+            imagen.addEventListener("click", function() {
+            if (rotated) {
+                imagen.style.transform = "rotate(0deg)";
+                rotated = false;} 
+            else {
+                imagen.style.transform = "rotate(180deg)";
+                rotated = true;}});
+
+
+            icono.addEventListener('click', toogleNovedades);
+
+                function toogleNovedades() {
+                    Novedades.classList.toggle('Novedades_close');
+                }
+
+            if (mayor_o_menor > 7){
+                toogleNovedades();
+            }
+           
+            });
+
+
+    </script>
+{% endblock %}

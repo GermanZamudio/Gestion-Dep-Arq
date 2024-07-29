@@ -1,0 +1,153 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block title %}
+    Registro
+{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Movimientos/style.css' %}" >
+   <!-- <script src="../../../static/Inventario/script.js"></script>
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="filter">
+        <form class="form_filter" action="/Inventario/Movimientos/" method="get">
+            <input type="text" name="Buscar">
+            <input type="submit" value="Buscar">
+        </form>
+    </div> 
+    <section class="section" id="section">
+        <div class="title">
+            <p class="title_articulo">Movimiento de Articulos díarios</p>
+            
+            <a href="#section" class="section_abajo" id="open">
+                <img src="../../../static/Inventario/img/flecha_abajo.png" alt="icono" id="icono">
+            </a>     
+        </div>
+        <table class="tabla_open tabla_close " id="tabla_1">
+            <tr>
+                <th>Fecha</th>
+                <th>Acción</th>
+                <th>Nombre</th>
+                <th>Entregado</th>
+                <th>Marca</th>
+                <th>Destino</th>
+                <th>Ubicación</th>
+                <th>Recibió</th>
+                <th> </th>
+            </tr>
+
+            {% for Articulo in Articulos %}
+            <tr>
+                <td data-titulo="Fecha:">{{Articulo.fecha|date:"d/m/y"}}</td>
+                <td data-titulo="Acción:">{{Articulo.accion}}</td>
+                <td data-titulo="Nombre:">{{Articulo.Nombre_de_Articulo}}</td>
+                <td data-titulo="Cantidad:">{{Articulo.Cantidad}}</td>
+                <td data-titulo="Marca:">{{Articulo.marca}}</td>
+                <td data-titulo="Destino:">{{Articulo.Destino}}</td>
+                <td data-titulo="Ubicacion:">{{Articulo.Ubicacion}}</td>
+                <td data-titulo="Recibio:">{{Articulo.Recibe_conforme}}</td> 
+                <td><a href="{% url 'confirmar_registro' Articulo.id %}">Eliminar</a></td> 
+            </tr>
+            {% empty %}
+            <tr>
+                <td rowspan="7">No existen Articulos de uso díario</td>
+            </tr>
+            {% endfor %}
+        </table>
+<br>
+        <div class="title">
+            <p class="title_articulo">Movimiento de Articulos de Licitación</p>
+            
+            <a href="#section" class="section_abajo2" id="open_2">
+                <img src="../../../static/Inventario/img/flecha_abajo.png" alt="icono_2" id="icono_2">
+            </a>     
+        </div>
+        <table class="tabla_open_2 tabla_close_2 " id="tabla_2">
+            <tr>
+                <th>Fecha</th>
+                <th>Acción</th>
+                <th>Nombre</th>
+                <th>Cantidad modificada</th>
+                <th>Licitacion</th>
+                <th>Destino</th>
+                <th>Ubicación</th>
+                <th>N° Orden</th>
+                <th>Recibió</th>
+                <th></th>
+            </tr>
+
+            {% for Articulo in Articulos_Licitacion %}
+            <tr>
+                <td data-titulo="Fecha:">{{Articulo.fecha|date:"d/m/y"}}</td>
+                <td data-titulo="Acción:">{{Articulo.accion}}</td>
+                <td data-titulo="Nombre:">{{Articulo.articulo_licitacion}}</td>
+                <td data-titulo="Cantidad:">{{Articulo.Cantidad}}</td>
+                <td data-titulo="Licitación:">{{Articulo.Licitacion}}</td>
+                <td data-titulo="Destino:">{{Articulo.Destino}}</td>
+                <td data-titulo="Ubicación:">{{Articulo.Ubicacion}}</td>
+                <td data-titulo="Número de orden:">{{Articulo.Numero_de_Orden}}</td>
+                <td data-titulo="Recibió:">{{Articulo.Recibe_conforme}}</td> 
+                <td><a href="{% url 'Agregar_Num_Orden' Articulo.id %}">Agregar N° Orden</a></td>
+                <td><a href="{% url 'confirmar_registro_licitacion' Articulo.id %}">Eliminar</a></td> 
+            </tr>
+            {% empty %}
+            <tr>
+                <td rowspan="7">No existen Articulos de uso díario</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </section>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            let icono = document.getElementById("open");
+            let tabla = document.getElementById("tabla_1");
+            let imagen = document.getElementById("icono");
+
+            let tabla_2 = document.getElementById("tabla_2");
+            let icono_2= document.getElementById("open_2");
+            let imagen_2 = document.getElementById("icono_2");
+
+            let mayor_o_menor =  "{{ mayor_o_menor }}";
+
+            let rotated = false;
+
+            imagen.addEventListener("click", function() {
+            if (rotated) {
+                imagen.style.transform = "rotate(0deg)";
+                rotated = false;} 
+            else {
+                imagen.style.transform = "rotate(180deg)";
+                rotated = true;}});
+
+            imagen_2.addEventListener("click", function() {
+            if (rotated) {
+                imagen_2.style.transform = "rotate(0deg)";
+                rotated = false;}
+            else {
+                imagen_2.style.transform = "rotate(180deg)";
+                rotated = true;}});
+
+            icono.addEventListener('click', toogleTable);
+
+                function toogleTable() {
+                    tabla.classList.toggle('tabla_close');
+                }
+        
+            icono_2.addEventListener('click', toogleTable2);
+
+                function toogleTable2() {
+                    tabla_2.classList.toggle('tabla_close_2');
+                }
+            
+            if (mayor_o_menor > 6){
+                toogleTable();
+                toogleTable2();}
+            });
+
+    </script>
+{% endblock %}

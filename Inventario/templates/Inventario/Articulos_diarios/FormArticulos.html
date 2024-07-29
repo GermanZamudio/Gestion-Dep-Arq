@@ -1,0 +1,220 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block title %}
+    Ingreso Articulos
+{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Ingreso/Articulos/style.css' %}" >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <section>
+        {% if Diario %}
+        <div class="formulario">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="title_form">
+                    <p>Ingreso de Articulos</p>
+                </div>
+                <div class="contenedor">
+                    <div class="contenedor_1">
+                        <div class="contenido">
+                            <label for="">Codigo: </label>
+                            <div class="my_input">
+                                <div class="sombra">
+                                {{form.codigo}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contenido">
+                            <label for="">Nombre: </label>
+                            <div class="my_input">                           
+                                <div class="sombra">
+                                {{form.nombre}}
+                                </div></div>
+                        </div>
+                        <div class="contenido">
+                            <label for="">Marca: </label>
+                            <div class="my_input">      
+                                <div class="sombra">
+                                    {{form.marca}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contenido">
+                            <label for="">Propósito: </label>
+                            <div class="my_input">            
+                                <div class="sombra">
+                                {{form.Descripcion}}
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="contenido">
+                            <label for="">Cantidad: </label>
+                            <div class="my_input">                  
+                                <div class="sombra">
+                                {{form.Existencias}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contenedor_2"> 
+                        <div class="contenido">
+                            <label for="">Categoría: </label>
+                            <div class="my_input">
+                                <div class="sombra">
+                                    {{form.IdCategorias}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contenido">
+                            <label for="">Ubicación: </label>
+                            <div class="my_input">
+                                <div class="sombra">
+                                    {{form.IdUbicacion}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contenido">
+                            <label for="">Acción: </label>
+                            <div class="my_input">
+                                <div class="sombra">
+                                    {{form.utilidad}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contenido">
+                            <label for="">Saldo unitario: </label>
+                            <div class="my_input">
+                                <div class="sombra">
+                                    {{form.saldo_unitario}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contenido">
+                            <label for="">Saldo total: </label>
+                            <div class="my_input">
+                                <div class="sombra">
+                                    {{form.saldo_total}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="boton_form">
+                            <button>Guardar</button>
+                        </div>
+                                                    
+                        <div  class="boton_form">
+                            <button  type="submit" name="guardar_y_agregar_otro">Guardar y agregar otro</button>
+                        </div>
+                    </div>
+                </div> 
+            </form>
+        </div>
+        {% elif Licitacion %}
+            {% if error %}
+            <h1>No es valido el formulario</h1>
+            {% endif %}
+            <div class="formulario">
+                <div class="title_form">
+                <p>Ingreso de Articulos</p>
+                </div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="contenedor">
+                        <div class="contenedor_1">
+                            <div class="contenido">
+                                <label for="">Codigo: </label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                    {{form.codigo}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contenido">
+                                <label for="">Nombre: </label>
+                                <div class="my_input">                           
+                                    <div class="sombra">
+                                    {{form.nombre}}
+                                    </div></div>
+                            </div>
+                            <div class="contenido">
+                                <label for="">Marca: </label>
+                                <div class="my_input">      
+                                    <div class="sombra">
+                                        {{form.marca}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contenido">
+                                <label for="">Cantidad: </label>
+                                <div class="my_input">                  
+                                    <div class="sombra">
+                                    {{form.Existencias}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contenido">
+                                <label for="">Categoría: </label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{form.IdCategorias}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contenedor_2"> 
+
+                            <div class="contenido">
+                                <label for="">Ubicación: </label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{form.IdUbicacion}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contenido">
+                                <label for="">Licitación </label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{form.licitacion}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contenido">
+                                <label for="">Saldo unitario: </label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{form.saldo_unitario}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contenido">
+                                <label for="">Saldo total: </label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{form.saldo_total}}
+                                    </div>
+                                </div>
+                             </div>
+                            <div type="submit" class="boton_form" name="guardar">
+                                <button>Guardar</button>
+                            </div>
+                            
+                            <div class="boton_form">
+                                <button type="submit" name="guardar_y_agregar_otro">Guardar y agregar otro</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        {% else %}
+            <h1>Algo anda mal</h1>
+        {% endif %}
+    </section>
+{% endblock %}

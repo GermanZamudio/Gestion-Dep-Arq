@@ -1,0 +1,152 @@
+{% extends 'Inventario/base.html' %}
+{% load static %}
+{% block title %}
+    Inventario
+{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Herramientas/style.css' %}" >
+   <!-- <script src="../../../static/Inventario/script.js"></script>
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <div class="filter">
+        <form class="form_filter" action="/Herramientas/" method="get">
+            <input type="text" name="Buscar">
+            <input type="submit" value="Buscar">
+        </form>
+    </div> 
+    <section class="section" id="section">
+
+        <div class="Ingreso">
+            <div>
+                <a href="/Herramientas/ingreso_herramienta/">+ Ingresar Herramientas </a>
+            </div>
+        </div>
+        <div class="title">
+            <p class="title_articulo">Herramientas</p>
+            
+            <a href="#section" class="section_abajo" id="open">
+                <img src="../../../static/Inventario/img/flecha_abajo.png" alt="icono" id="icono">
+            </a>     
+        </div>
+
+        <table class="tabla_open tabla_close" id="tabla_1">
+            <tr>
+                <th>Nombre</th>
+                <th>Marca</th>
+                <th>Funcion</th>
+                <th>Ubicación</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            {% for Herramienta in Herramientas %}
+            <tr>
+                <td data-titulo="Nombre:">{{Herramienta.nombre}}</td>
+                <td data-titulo="Marca:">{{Herramienta.marca}}</td>
+                <td data-titulo="Funcion:">{{Herramienta.Funcion}}</td>
+                <td data-titulo="Ubicación:">{{Herramienta.ubicacion}}</td>
+                <td><a href="{% url 'Editar_Herramienta' Herramienta.id %}">Editar</a></td>
+                <td><a href="{% url 'confirmar_herramienta' Herramienta.id %}">Eliminar</a></td> 
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No existen Herramientas</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    <div class="Ingreso">
+        <div>
+            <a href="/Herramientas/ingreso_acta/"> + Prestar Herramientas</a>
+        </div>
+    </div>
+        <div class="title">
+            <p class="title_licitacion">Herramientas prestadas</p>
+            <a href="#section" class="section_abajo2" id="open_2">
+                <img src="../../../static/Inventario/img/flecha_abajo.png" alt="icono_2" id="icono_2">
+            </a>   
+        </div>
+        <table class="tabla_open_2 tabla_close_2 " id="tabla_2">
+            <tr>
+                <th>fecha</th>
+                <th>Destino</th>
+                <th>Recibe</th>
+                <th>Entrega</th>
+                <th>Herramienta</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            {% for acta in Prestamo %}
+            <tr class="content">
+                <td data-titulo="Fecha:">{{acta.acta.fecha|date:"d/m/y"}}</td>
+                <td data-titulo="Destino:">{{acta.acta.Destino}}</td>
+                <td data-titulo="Recibe:">{{acta.acta.Recibe}}</td>
+                <td data-titulo="Entrega:">{{acta.acta.Entrega}}</td>
+                <td data-titulo="Herramienta: ">{{acta.herramienta.nombre}}</td>
+                <td><a href="{% url 'Editar_Acta' acta.acta.id %}">Editar</a></td> 
+                <td><a href="{% url 'confirmar_acta' acta.acta.id %}">Eliminar</a></td> 
+            </tr>
+            {% empty %}
+            <tr>
+                <td rowspan="5">No existen Acta de Herramientas</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+
+    </section>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            let icono = document.getElementById("open");
+            let tabla = document.getElementById("tabla_1");
+            let imagen = document.getElementById("icono");
+
+            let tabla_2 = document.getElementById("tabla_2");
+            let icono_2= document.getElementById("open_2");
+            let imagen_2 = document.getElementById("icono_2");
+            let mayor_o_menor =  "{{ mayor_o_menor }}";
+            let rotated = false;
+
+            imagen.addEventListener("click", function() {
+            if (rotated) {
+                imagen.style.transform = "rotate(0deg)";
+                rotated = false;} 
+            else {
+                imagen.style.transform = "rotate(180deg)";
+                rotated = true;}});
+
+            imagen_2.addEventListener("click", function() {
+            if (rotated) {
+                imagen_2.style.transform = "rotate(0deg)";
+                rotated = false;}
+            else {
+                imagen_2.style.transform = "rotate(180deg)";
+                rotated = true;}});
+
+            icono.addEventListener('click', toogleTable);
+
+                function toogleTable() {
+                    tabla.classList.toggle('tabla_close');
+                }
+        
+            icono_2.addEventListener('click', toogleTable2);
+
+                function toogleTable2() {
+                    tabla_2.classList.toggle('tabla_close_2');
+                }
+            if (mayor_o_menor > 6){
+                toogleTable();
+                toogleTable2();}
+            });
+    </script>
+
+{% endblock %}
+
+

@@ -1,0 +1,143 @@
+
+body{
+    position: relative;
+}
+/*buscador*/
+.filter{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 5%;
+    width: 98%;
+}
+.form_filter input{
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    color: #fff;
+    border-radius: 5px;
+}
+
+/*Section*/
+#icono {
+    height: 30px;
+    width: 30px;
+    transition: transform 0.3s ease-in-out;
+      }
+.section{
+    color: #fff;
+}
+.Ingreso{
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 13px;
+}
+.Ingreso div{
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    padding: 2px;
+    margin: 2px;
+    border-radius: 15px;
+}
+.Ingreso div:hover{
+    scale:1.02;
+    margin: 3px;
+    transition: 0.5s;
+}
+.Ingreso a{
+    text-decoration: none;
+    color: #fff;
+}
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    background-size: cover;
+    font-size: 1.2em;
+}
+.section_abajo{
+    margin-left: 30px;
+}
+
+.tabla_open{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tabla_close{
+    display: none;
+    transition: all 0.7s;
+ }
+tbody{
+    width: 80%;
+    background:rgb(50, 50, 50);
+    background-size: cover;
+    border-radius: 10px;
+    text-align: center;
+
+}
+tbody tr{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+tbody tr a{
+    text-decoration: none;
+    background:linear-gradient(rgba(77, 77, 77, 0.5), rgba(0, 0, 0, 0.5));
+    border-radius: 10px;
+    padding: 3px;
+    color: #ffffff;
+}
+
+/*Articulos de licitacion*/
+
+#icono_2 {
+    height: 30px;
+    width: 30px;
+    transition: transform 0.3s ease-in-out;
+      }
+
+.tabla_open_2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+.tabla_close_2{
+        display: none;
+        transition: all 0.7s;
+     }
+
+
+@media (max-width:600px)
+     {  
+
+    tbody{
+        width: 92%;
+    }
+    tbody tr{
+        display: flex;
+        justify-content: space-around;
+        align-items:normal;
+        flex-direction: column;
+        border-bottom: 1px solid white;
+    }
+    table td{
+        
+        margin-bottom: 10px;
+    }
+    table td[data-titulo]{
+        display: flex;
+    }
+    table td[data-titulo]::before{
+        content: attr( data-titulo );
+        width: 90px;
+        justify-content: space-around;
+    }
+
+table tr th{
+    display: none;
+}
+
+
+}

@@ -1,0 +1,159 @@
+{% extends 'Inventario/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Editar
+{% endblock %}
+
+
+{% block extra_head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Herramientas/ingreso/style.css' %}" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+     <!-- CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    {% endblock %}
+
+{% block content %}
+
+    {% if Edit_Herramienta %}
+        {% if error %}
+            <h1>No es valido el formulario de Articulo</h1>
+        {% endif %}
+        <section>
+            
+            <div class="formulario">
+                <form action="{% url 'Editar_form_Herramienta' Herramienta.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="title_form">
+                        <div class="my_input">
+                            <div class="sombra">
+                                <p>{{ form.nombre }}</p>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="contenedor">
+                        <div class="contenedor_1">
+                            <div class="contenido">
+                                {{ form.nombre.label_tag }}
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.nombre }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                {{ form.marca.label_tag }}
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.marca }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Cantidad:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.cantidad }}
+                                    </div>
+                                </div>    
+                            </div>
+                            
+                            <div class="contenido">
+                                <label for="">Ubicación:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.ubicacion }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Funcion:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.Funcion }}
+                                    </div>
+                                </div>    
+                            </div>
+
+                            <div  class="boton_form">
+                                <button>Guardar</button>
+                            </div>    
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+    {% elif Edit_acta %}
+        {% if error %}
+        <h1>No es valido el formulario</h1>
+        {% endif %}
+        <section>
+            <div class="formulario">
+                <form action="{% url 'Editar_form_Acta' acta.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="title_form">
+                        <div class="my_input">
+                            <div class="sombra">
+                                <p>{{ form.Destino }}</p>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="contenedor">
+                        <div class="contenedor_1">
+                            <div class="contenido">
+                                {{ form.Recibe.label_tag }}
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.Recibe }}
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="contenido">
+                                <label for="">Entrega:</label>
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        {{ form.Entrega }}
+                                    </div>
+                                </div>    
+                            </div>
+
+                            <div class="contenedor_2">
+                                <p class="prestamo">Prestamos:</p>
+                                <div class="cont_prestamo">   
+                                    <div class="listado">
+                                        <select name="select_herramienta" class="select_herramienta" multiple="multiple">
+                                            {% for i in form.Herramienta %}
+                                                <option value="">{{i}}</option>
+                                            {% endfor %}
+                                        </select>  
+                                        <br>
+                                        <div class="contenido boton_form">
+                                            <button>Guardar</button>
+                                        </div>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    {% else %}
+    <h1 style="color: #fff;">Algo anda mal</h1>
+    {% endif %}
+
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select_herramienta').select2();
+        });
+    </script>
+    
+{% endblock %}
