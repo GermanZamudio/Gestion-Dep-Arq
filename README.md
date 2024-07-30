@@ -84,5 +84,5 @@ German Zamudio - germanbenjamin@hotmail.com
 
 ## Enlace al Proyecto: [https://gestion-dep-arq.onrender.com/)
 - ** Credenciales: 
-- **Usuario: test.user
-- **Contraseña: test
+  Usuario: test.user
+  Contraseña: test
