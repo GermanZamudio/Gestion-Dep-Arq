@@ -15,14 +15,70 @@
     {% endblock %}
 
 {% block content %}
-    <section>
-        {% if error %}
-            <h1>No es valido el formulario de Articulo</h1>
+    <section >
+        {% if error_Herramienta %}
+              
+            <div class="formulario_1">
+                <form action="" method="POST">  
+                    {% csrf_token %}
+                    <div class="title_form1">
+                        <p>Ingreso de herramientas</p>                        
+                    </div>
+                    <br>
+                    <div class="error">
+                        <p>CAMPOS INCOMPLETOS</p>
+                    </div>
+                    <div class="contenedor_h">
+                            <div class="contenedor_herramienta">
+                                <div class="contenido">
+                                    <label for="">Nombre: </label>
+                                    <div class="my_input">
+                                        <div class="sombra">
+                                        {{form.nombre}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="contenido">
+                                    <label for="">Marca: </label>
+                                    <div class="my_input">      
+                                        <div class="sombra">
+                                            {{form.marca}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="contenido">
+                                    <label for="">Funcion: </label>
+                                    <div class="my_input">                  
+                                        <div class="sombra">
+                                        {{form.Funcion}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="contenido contselect">
+                                    <select name="select_ubicacion" class="select_ubicacion ">
+                                        {% for i in form.ubicacion %}
+                                            <option value="">{{i}}</option>
+                                        {% endfor %}
+                                    </select> 
+                                </div>    
+        
+                                <div type="submit" class="boton_form" name="guardar">
+                                    <button>Guardar</button>
+                                </div>
+                                <br>
+                                <div class="boton_form">
+                                    <button type="submit" name="guardar_y_agregar_otro">Guardar y agregar otro</button>
+                                </div>
+                            </div>
+                    </div>    
+                </form>
+            </div>    
         {% endif %}
         {% if herramienta %}
         <div class="formulario_1">
             <form action="" method="POST">
                 {% csrf_token %}
+                
                 <div class="title_form1">
                     <p>Ingreso de herramientas</p>
                 </div>
@@ -53,11 +109,7 @@
                             </div>
                         </div>
                         <div class="contenido contselect">
-                            <select name="select_ubicacion" class="select_ubicacion ">
-                                {% for i in form.ubicacion %}
-                                    <option value="">{{i}}</option>
-                                {% endfor %}
-                            </select> 
+                            {{form.ubicacion}}
                         </div>    
 
                         <div type="submit" class="boton_form" name="guardar">
@@ -68,13 +120,63 @@
                             <button type="submit" name="guardar_y_agregar_otro">Guardar y agregar otro</button>
                         </div>
                     </div>
-                    </div>
-                </div>    
+                </div>
+   
+
             </form>
         </div>
         {% elif prestamo %}
-            {% if error %}
-            <h1>No es valido el formulario</h1>
+            {% if error_Acta %}
+            <div class="formulario_2">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="title_form">
+                        <p>Acta de Herramientas</p>
+                    </div>
+                    <div class="error">
+                        <p>No es valido el formulario</p>
+                    </div>
+                    <div class="contenedor">
+                        <div class="contenedor_interno">
+                            <div class="contenido">
+                                <label for="">Destino: </label>
+                                <div class="my_input">                           
+                                    <div class="sombra">
+                                    {{form.Destino}}
+                                    </div>
+                                </div>
+                            </div>        
+                            <div class="contenido" >
+                                <label for="">Recibe: </label>
+                                <div class="my_input">            
+                                    <div class="sombra">
+                                    {{form.Recibe}}
+                                    </div>
+                                </div>
+                            </div>    
+                            <div class="contenido">
+                                <label for="">Entrega: </label>
+                                <div class="my_input">                  
+                                    <div class="sombra">
+                                    {{form.Entrega}}
+                                    </div>
+                                </div>                                
+                            </div>
+
+                            <div class="contenido contselect" id="selectDiv">                    
+                                <select name="select_herramienta" class="select_herramienta" multiple="multiple">
+                                    {% for i in form.Herramienta %}
+                                        <option value="">{{i}}</option>
+                                    {% endfor %}
+                                </select> 
+                            </div>    
+
+                        <div class="contenido boton_form">
+                            <button>Guardar</button>
+                        </div>
+                    </div>      
+                </form>
+            </div>
             {% endif %}
             <div class="formulario_2">
                 <form action="" method="POST">
@@ -110,12 +212,7 @@
                             </div>
 
                             <div class="contenido contselect" id="selectDiv">                    
-                                <select name="select_herramienta" class="select_herramienta" multiple="multiple">
-                                    {% for i in form.Herramienta %}
-                                        <option value="">{{i}}</option>
-                                    {% endfor %}
-                                </select> 
-                                </div>
+                                {{form.Herramienta}}
                             </div>    
 
                             <div class="contenido boton_form">
@@ -129,10 +226,11 @@
 
             </div>
         {% else %}
-            <h1>Algo anda mal</h1>
+
         {% endif %}
     </section>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         
         <script>
@@ -155,3 +253,6 @@
         });
     </script>
 {% endblock %}
+
+
+

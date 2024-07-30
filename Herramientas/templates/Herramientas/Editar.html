@@ -23,20 +23,18 @@
         {% if error %}
             <h1>No es valido el formulario de Articulo</h1>
         {% endif %}
-        <section>
+        <section style="display: flex;justify-content: center;align-items: center;">
             
-            <div class="formulario">
+            <div class="formulario_1">
                 <form action="{% url 'Editar_form_Herramienta' Herramienta.id %}" method="POST">
                     {% csrf_token %}
                     <div class="title_form">
-                        <div class="my_input">
-                            <div class="sombra">
-                                <p>{{ form.nombre }}</p>
-                            </div>
+                        <div>
+                        <p>Editar Herramienta</p>
                         </div>    
                     </div>
-                    <div class="contenedor">
-                        <div class="contenedor_1">
+                    <div class="contenedor_h">
+                        <div class="contenedor_herramienta">
                             <div class="contenido">
                                 {{ form.nombre.label_tag }}
                                 <div class="my_input">
@@ -53,17 +51,8 @@
                                     </div>
                                 </div>    
                             </div>
-                            <div class="contenido">
-                                <label for="">Cantidad:</label>
-                                <div class="my_input">
-                                    <div class="sombra">
-                                        {{ form.cantidad }}
-                                    </div>
-                                </div>    
-                            </div>
                             
                             <div class="contenido">
-                                <label for="">Ubicación:</label>
                                 <div class="my_input">
                                     <div class="sombra">
                                         {{ form.ubicacion }}
@@ -92,19 +81,24 @@
         {% if error %}
         <h1>No es valido el formulario</h1>
         {% endif %}
-        <section>
-            <div class="formulario">
+        <section style="display: flex;justify-content: center;align-items: center;">
+            <div class="formulario_2">
                 <form action="{% url 'Editar_form_Acta' acta.id %}" method="POST">
                     {% csrf_token %}
                     <div class="title_form">
-                        <div class="my_input">
-                            <div class="sombra">
-                                <p>{{ form.Destino }}</p>
-                            </div>
+                        <div >
+                            <p>Editar Acta de Herramientas</p>
                         </div>    
                     </div>
                     <div class="contenedor">
-                        <div class="contenedor_1">
+                        <div class="contenedor_interno">
+                            <div class="contenido">
+                                <div class="my_input">
+                                    <div class="sombra">
+                                        <p>{{ form.Destino }}</p>
+                                    </div>
+                                </div>   
+                            </div>
                             <div class="contenido">
                                 {{ form.Recibe.label_tag }}
                                 <div class="my_input">
@@ -122,22 +116,14 @@
                                 </div>    
                             </div>
 
-                            <div class="contenedor_2">
-                                <p class="prestamo">Prestamos:</p>
-                                <div class="cont_prestamo">   
-                                    <div class="listado">
-                                        <select name="select_herramienta" class="select_herramienta" multiple="multiple">
-                                            {% for i in form.Herramienta %}
-                                                <option value="">{{i}}</option>
-                                            {% endfor %}
-                                        </select>  
-                                        <br>
-                                        <div class="contenido boton_form">
-                                            <button>Guardar</button>
-                                        </div>  
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="contenido contselect" id="selectDiv">                    
+                                {{form.Herramienta}}
+                            </div>    
+                                        
+                            <div class="contenido boton_form">
+                                <button>Guardar</button>
+                            </div>  
+
                         </div>
                     </div>
                 </form>

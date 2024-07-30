@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'Inventario',
     'Novedades',
     'Herramientas',
+    'django_select2'
 
 ]
 

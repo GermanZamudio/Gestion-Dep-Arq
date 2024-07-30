@@ -27,8 +27,9 @@ body{
 }
 .hero{
     max-height: 300px;
-    color: #000000;
-
+    color: #ffffff;
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+        
 }
 .mobile{
     display: block;

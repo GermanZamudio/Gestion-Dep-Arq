@@ -10,8 +10,6 @@ section{
     height: 80%;
     background-size: cover;
     border-radius: 5%;
-    font-size: 20px;
-    font-weight: 300;
 }
 .formulario form{
     height: 100%;
@@ -37,8 +35,11 @@ section{
     justify-content: start;
     align-items: start;
     padding: 10px;
+    font-family:system-ui, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-
+label{
+    font-size: 100%;
+}
 .my_input .sombra{
     border-bottom: 1px solid #adadad;
 }

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Herramientas,Acta_entrega_herramienta,Prestamo
 from .form import Form_Acta_trabajo,Form_Herramienta
 from django.contrib.auth.decorators import login_required
@@ -71,13 +71,13 @@ def form_Ingreso(request):
                         {"form": form,"herramienta":"herramienta"})
             else:
                 return render(
-                        request, "Herramienta/form.html", 
+                        request, "Herramientas/form.html", 
                         {"form": form_Ingreso, 
-                        "error": "error"}
+                        "error_Herramienta": "error_Herramienta"}
                     )
             
         # Procesamos la informacion si es valida lo guardamos
-        else:
+        elif resolved_url=='ingreso_acta':
             form_Ingreso = Form_Acta_trabajo(request.POST)
             if form_Ingreso.is_valid():
                 form_Ingreso.save()
@@ -85,7 +85,7 @@ def form_Ingreso(request):
                 return render(
                         request, "Herramientas/form.html", 
                         {"form": form_Ingreso, 
-                        "error": "error"}
+                        "error_Acta": "error_Acta"}
                     )
     # Le pasamos todos los articulos a la vista inventario
         Herramienta = Herramientas.objects.all().order_by("ubicacion")

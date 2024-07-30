@@ -12,6 +12,7 @@ from datetime import datetime
 from django.urls import resolve
 # Create your views here.
 
+@login_required
 def InventaryView(request):
     # Accedemos al input de busqueda y evaluamos si el usuario inicio una busqueda.
     busqueda = request.GET.get("Buscar", "")
