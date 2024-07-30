@@ -83,6 +83,6 @@ Sigue estos pasos para instalar y ejecutar el proyecto localmente.
 German Zamudio - germanbenjamin@hotmail.com
 
 ## Enlace al Proyecto: [https://gestion-dep-arq.onrender.com/)
-## Credenciales: 
-  ## Usuario: test.user
-  ## Contraseña: test
+- ** Credenciales: 
+- **Usuario: test.user
+- **Contraseña: test
