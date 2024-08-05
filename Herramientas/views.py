@@ -70,8 +70,7 @@ def form_Ingreso(request):
                         "Herramientas/form.html",
                         {"form": form,"herramienta":"herramienta"})
             else:
-                return render(
-                        request, "Herramientas/form.html", 
+                return render(request, "Herramientas/form.html", 
                         {"form": form_Ingreso, 
                         "error_Herramienta": "error_Herramienta"}
                     )
